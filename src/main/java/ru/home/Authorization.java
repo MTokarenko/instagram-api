@@ -14,10 +14,10 @@ public class Authorization {
 
     public static String getCode() {
         try {
-            return Request.Post(String.format(
+            return Request.Get(String.format(
                     "https://api.instagram.com/oauth/authorize/?client_id=%s&redirect_uri=%s&response_type=code",
                     getProperty("client_id"),
-                    getProperty("redirect_URI"))).execute().toString();
+                    getProperty("redirect_URI"))).execute().returnContent().toString();
         } catch (IOException e) {
             e.printStackTrace();
             return null;
